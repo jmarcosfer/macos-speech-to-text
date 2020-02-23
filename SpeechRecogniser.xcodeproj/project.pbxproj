@@ -11,6 +11,7 @@
 		CF10168223EDC21A00DAF7D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF10168123EDC21A00DAF7D8 /* ViewController.swift */; };
 		CF10168423EDC21D00DAF7D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF10168323EDC21D00DAF7D8 /* Assets.xcassets */; };
 		CF10168723EDC21D00DAF7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF10168523EDC21D00DAF7D8 /* Main.storyboard */; };
+		CFBDEC7723FBEBF500C67290 /* SpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDEC7623FBEBF500C67290 /* SpeechToText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,9 @@
 		CF10168623EDC21D00DAF7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF10168823EDC21D00DAF7D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF10168923EDC21D00DAF7D8 /* SpeechRecogniser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpeechRecogniser.entitlements; sourceTree = "<group>"; };
+		CFBDEC6F23FBDCF500C67290 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		CFBDEC7123FBDCF700C67290 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		CFBDEC7623FBEBF500C67290 /* SpeechToText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +42,7 @@
 			isa = PBXGroup;
 			children = (
 				CF10167E23EDC21A00DAF7D8 /* SpeechRecogniser */,
+				CFBDEC7523FBE91700C67290 /* Supporting Files */,
 				CF10167D23EDC21A00DAF7D8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,13 +59,37 @@
 			isa = PBXGroup;
 			children = (
 				CF10167F23EDC21A00DAF7D8 /* AppDelegate.swift */,
-				CF10168123EDC21A00DAF7D8 /* ViewController.swift */,
+				CFBDEC7323FBE84A00C67290 /* View Controllers */,
+				CFBDEC7423FBE8D600C67290 /* Model */,
 				CF10168323EDC21D00DAF7D8 /* Assets.xcassets */,
 				CF10168523EDC21D00DAF7D8 /* Main.storyboard */,
+			);
+			path = SpeechRecogniser;
+			sourceTree = "<group>";
+		};
+		CFBDEC7323FBE84A00C67290 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CF10168123EDC21A00DAF7D8 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		CFBDEC7423FBE8D600C67290 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFBDEC7623FBEBF500C67290 /* SpeechToText.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFBDEC7523FBE91700C67290 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				CF10168823EDC21D00DAF7D8 /* Info.plist */,
 				CF10168923EDC21D00DAF7D8 /* SpeechRecogniser.entitlements */,
 			);
-			path = SpeechRecogniser;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,10 +129,11 @@
 			};
 			buildConfigurationList = CF10167723EDC21A00DAF7D8 /* Build configuration list for PBXProject "SpeechRecogniser" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 				Base,
 			);
 			mainGroup = CF10167323EDC21A00DAF7D8;
@@ -133,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBDEC7723FBEBF500C67290 /* SpeechToText.swift in Sources */,
 				CF10168223EDC21A00DAF7D8 /* ViewController.swift in Sources */,
 				CF10168023EDC21A00DAF7D8 /* AppDelegate.swift in Sources */,
 			);
@@ -145,6 +176,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				CF10168623EDC21D00DAF7D8 /* Base */,
+				CFBDEC6F23FBDCF500C67290 /* es */,
+				CFBDEC7123FBDCF700C67290 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -269,10 +302,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SpeechRecogniser/SpeechRecogniser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Supporting Files/SpeechRecogniser.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SpeechRecogniser/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -287,10 +320,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SpeechRecogniser/SpeechRecogniser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Supporting Files/SpeechRecogniser.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SpeechRecogniser/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

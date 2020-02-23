@@ -36,6 +36,8 @@
 	<string>This app provides real-time speech to text transcription for two people in conversation as part of an interactive sound art installation.</string>
 	<key>NSSupportsAutomaticTermination</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app will take audio from the default input and use it to recognise speech and return it as text.</string>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
 </dict>

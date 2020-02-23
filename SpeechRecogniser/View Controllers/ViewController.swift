@@ -1,67 +1,29 @@
 import Cocoa
-import AVFoundation
-import Speech
 
 class ViewController: NSViewController {
     // UI references
-    @IBOutlet weak var mostrarTexto: NSTextFieldCell!
+
+    @IBOutlet weak var mostrarTexto: NSTextField!
     @IBOutlet weak var comenzarReconocimiento: NSButton!
     
-    var chosenLocale: Locale!
-    var speechRecognizer: SFSpeechRecognizer!
+    // instance of our Model object:
+    let stt = SpeechToText(instanceNumber: 0)
+    // -----------------------------
     
     override public func viewDidAppear() {
         super.viewDidAppear()
-        // get permission to perform speech recognition:
         
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-
-          // The authorization status results in changes to the
-          // app’s interface, so process the results on the app’s
-          // main queue.
-             OperationQueue.main.addOperation {
-                switch authStatus {
-                   case .authorized:
-                        print("authorized")
-
-                   case .denied:
-                        print("denied")
-
-                   case .restricted:
-                        print("restricted")
-
-                   case .notDetermined:
-                        print("not determined")
-                    
-                }
-            }
-        }
+//        stt.delegate = self
+        self.comenzarReconocimiento.state = NSControl.StateValue(0)
         
-        // Ensure Spanish locale object is supported
-        let supportedLocales = SFSpeechRecognizer.supportedLocales()
-        if supportedLocales.contains(Locale(identifier: "es-ES")) {
-            chosenLocale = Locale(identifier: "es-ES")
-        }
+        self.stt.setup(self)
         
-        for locale in supportedLocales {
-            speechRecognizer = SFSpeechRecognizer(locale: locale)
-            print("language: ", locale.identifier, "supports on-device: ", speechRecognizer.supportsOnDeviceRecognition)
-        }
-        
-        // instantiate speech recognizer object with chosen locale (i.e. language)
-        speechRecognizer = SFSpeechRecognizer(locale: chosenLocale)
-        print("recogniser available: ", speechRecognizer.isAvailable, "\n",
-            "supports on-device: ", speechRecognizer.supportsOnDeviceRecognition, "\n", speechRecognizer.locale)
-         
-         
-        if speechRecognizer.supportsOnDeviceRecognition {
-             print("device supports on-device recognition for chosen language: \(chosenLocale.identifier)")
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
     }
 
     override var representedObject: Any? {
@@ -69,16 +31,14 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
-    // functions needed for recognition process, in order of use
-    
-    
     
     @IBAction func comenzarReconocimientoClicked(_ sender: Any) {
-        
-        print("recogniser available: ", speechRecognizer.isAvailable, "\n",
-        "supports on-device: ", speechRecognizer.supportsOnDeviceRecognition, "\n", speechRecognizer.locale)
-        // tempSettingUp()
+        if self.comenzarReconocimiento.state == NSControl.StateValue(1) {
+            self.comenzarReconocimiento.highlight(true)
+            self.stt.start()
+        } else if self.comenzarReconocimiento.state == NSControl.StateValue(0) {
+            print("we're done here")
+            self.stt.stop()
+        }
     }
 }
-
