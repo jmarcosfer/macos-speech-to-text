@@ -23,10 +23,10 @@ class SpeechToText {
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest!
     var recognitionTask: SFSpeechRecognitionTask!
     let audioEngine = AVAudioEngine()
-    private var instanceNumber: AudioDeviceID?
+    private var instanceNumber: Int
     private var controllerInstance: ViewController?
     
-    init(instanceNumber sttInstanceNumber: AudioDeviceID) {
+    init(instanceNumber sttInstanceNumber: Int) {
         instanceNumber = sttInstanceNumber
     }
     
@@ -91,41 +91,19 @@ class SpeechToText {
         print("Uses format: ", inputNode.outputFormat(forBus: 0))
         print("Name: ", inputNode.name(forOutputBus: 0) ?? "no name")
         
-//        guard let inputUnit = inputNode.audioUnit else { return inputNode }
-//
-//        // get proper ID number ref through low-level kAudio-type calls:
-//        var inputDeviceID = self.instanceNumber
-//
-//        var propertyAddress = AudioObjectPropertyAddress(mSelector: kAudioHardwarePropertyDefaultInputDevice, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMaster)
-//
-//        var deviceIdSize = UInt32(MemoryLayout<AudioDeviceID>.size)
-//
-//        AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &propertyAddress, 0, nil, &deviceIdSize, &inputDeviceID)
-//
-//        AudioUnitSetProperty(inputUnit, kAudioOutputUnitProperty_CurrentDevice, kAudioUnitScope_Global, 0, &inputDeviceID, deviceIdSize)
-        
-        // back to inputNode: set a listening tap on it to fill buffers for recognition
+        // grab single channel pointer, put into new AVAudioPCMBuffer object, then pass to request object
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) -> Void in
             
-            let inNumberFrames: Int = Int(buffer.frameLength)
-
-            for i in 0..<inNumberFrames {
-                let sample = buffer.floatChannelData![1][i]
-                print("sample: ", sample)
-            }
-//            if buffer.format.channelCount > 0 {
-//                let samples = (buffer.floatChannelData![0])
-//                var avgValue: Float32 = 0
-//                vDSP_meamgv(samples, buffer.stride, &avgValue, inNumberFrames)
-//                var v: Float = -100
-//                if avgValue != 0 {
-//                    v = 20.0 * log10f(avgValue)
-//                    print("samples:", v)
-//                }
-//            }
+            let singleChannelBuffer = AVAudioPCMBuffer(pcmFormat: buffer.format,frameCapacity:  buffer.frameCapacity)!
             
-            self.recognitionRequest?.append(buffer.floatChannelData![1])
+//            let inNumberSamples: Int = Int(buffer.frameLength)
+            for i in 0..<Int(buffer.frameLength) {
+                singleChannelBuffer.floatChannelData![0][i] = buffer.floatChannelData![1][i]
+                print(singleChannelBuffer.audioBufferList.pointee)
+            }
+
+            self.recognitionRequest?.append(singleChannelBuffer)
         }
         
         self.audioEngine.prepare()
