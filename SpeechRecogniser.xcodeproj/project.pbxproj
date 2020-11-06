@@ -11,6 +11,7 @@
 		CF10168223EDC21A00DAF7D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF10168123EDC21A00DAF7D8 /* ViewController.swift */; };
 		CF10168423EDC21D00DAF7D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF10168323EDC21D00DAF7D8 /* Assets.xcassets */; };
 		CF10168723EDC21D00DAF7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF10168523EDC21D00DAF7D8 /* Main.storyboard */; };
+		CFAC3A8A24D73C8C00008D81 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFAC3A8924D73C8C00008D81 /* Speech.framework */; };
 		CFBDEC7723FBEBF500C67290 /* SpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDEC7623FBEBF500C67290 /* SpeechToText.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,8 +23,8 @@
 		CF10168623EDC21D00DAF7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF10168823EDC21D00DAF7D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF10168923EDC21D00DAF7D8 /* SpeechRecogniser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpeechRecogniser.entitlements; sourceTree = "<group>"; };
+		CFAC3A8924D73C8C00008D81 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 		CFBDEC6F23FBDCF500C67290 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		CFBDEC7123FBDCF700C67290 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		CFBDEC7623FBEBF500C67290 /* SpeechToText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFAC3A8A24D73C8C00008D81 /* Speech.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +46,7 @@
 				CF10167E23EDC21A00DAF7D8 /* SpeechRecogniser */,
 				CFBDEC7523FBE91700C67290 /* Supporting Files */,
 				CF10167D23EDC21A00DAF7D8 /* Products */,
+				CFAC3A8824D73C8C00008D81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,6 +68,14 @@
 				CF10168523EDC21D00DAF7D8 /* Main.storyboard */,
 			);
 			path = SpeechRecogniser;
+			sourceTree = "<group>";
+		};
+		CFAC3A8824D73C8C00008D81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFAC3A8924D73C8C00008D81 /* Speech.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CFBDEC7323FBE84A00C67290 /* View Controllers */ = {
@@ -119,7 +130,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = Jorge;
 				TargetAttributes = {
 					CF10167B23EDC21A00DAF7D8 = {
@@ -132,7 +143,6 @@
 			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				es,
 				Base,
 			);
@@ -177,7 +187,6 @@
 			children = (
 				CF10168623EDC21D00DAF7D8 /* Base */,
 				CFBDEC6F23FBDCF500C67290 /* es */,
-				CFBDEC7123FBDCF700C67290 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -189,6 +198,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -249,6 +259,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -5,9 +5,10 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var mostrarTexto: NSTextField!
     @IBOutlet weak var comenzarReconocimiento: NSButton!
+    @IBOutlet weak var wordsToWatch: NSTextField!
     
     // instance of our Model object:
-    let stt = SpeechToText(instanceNumber: 0)
+    var stt = SpeechToText(instanceNumber: 0)
     // -----------------------------
     
     override public func viewDidAppear() {
@@ -32,13 +33,14 @@ class ViewController: NSViewController {
         }
     }
     
+    
+    
     @IBAction func comenzarReconocimientoClicked(_ sender: Any) {
         if self.comenzarReconocimiento.state == NSControl.StateValue(1) {
             self.comenzarReconocimiento.highlight(true)
-            self.stt.start()
-        } else if self.comenzarReconocimiento.state == NSControl.StateValue(0) {
-            print("we're done here")
-            self.stt.stop()
+            if !self.stt.started {
+                self.stt.start()
+            }
         }
     }
 }

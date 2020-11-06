@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -134,9 +135,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button focusRingType="exterior" verticalHuggingPriority="750" id="i7E-ZB-Ogh">
-                                <rect key="frame" x="324" y="109" width="273" height="32"/>
+                                <rect key="frame" x="482" y="355" width="373" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Comenzar reconocimiento de voz" alternateTitle="¡Detener reconocimiento!" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" focusRingType="exterior" inset="2" id="hx3-cT-RCP">
+                                <buttonCell key="cell" type="push" title="Comenzar reconocimiento de voz" alternateTitle="App Designed to run forever: Quit app to stop" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" focusRingType="exterior" inset="2" id="hx3-cT-RCP">
                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -144,10 +145,22 @@
                                     <action selector="comenzarReconocimientoClicked:" target="XfG-lQ-9wD" id="W3u-VV-HXF"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DfH-dX-bX4">
+                                <rect key="frame" x="59" y="362" width="412" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="word1,word2,word3" drawsBackground="YES" id="gHH-Zy-TLm">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="watchWords:" target="XfG-lQ-9wD" id="akx-Z5-hVx"/>
+                                </connections>
+                            </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tTI-0Z-WdP">
-                                <rect key="frame" x="65" y="152" width="790" height="239"/>
+                                <rect key="frame" x="59" y="41" width="790" height="283"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" selectable="YES" continuous="YES" allowsUndo="NO" borderStyle="bezel" alignment="center" title="Transcripción" drawsBackground="YES" id="zh6-Ao-tbG">
+                                <textFieldCell key="cell" selectable="YES" continuous="YES" allowsUndo="NO" borderStyle="bezel" alignment="center" title="Detectado: " drawsBackground="YES" id="zh6-Ao-tbG">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -158,6 +171,8 @@
                     <connections>
                         <outlet property="comenzarReconocimiento" destination="i7E-ZB-Ogh" id="rh4-ma-mMU"/>
                         <outlet property="mostrarTexto" destination="tTI-0Z-WdP" id="stz-hA-BjH"/>
+                        <outlet property="wordSelect" destination="DfH-dX-bX4" id="3PK-gn-man"/>
+                        <outlet property="wordsToWatch" destination="DfH-dX-bX4" id="XL3-kB-88f"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
